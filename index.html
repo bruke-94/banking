@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>banking.et - Domain For Sale</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,12 +28,20 @@
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            /* Prevent scrolling */
+            position: fixed;
+            /* Lock body in place */
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: 'Rajdhani', sans-serif;
-            height: 100vh;
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -377,7 +385,8 @@
                 const card = document.querySelector('.glass-card');
                 const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
                 const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                card.style.transform = `rotateY(${xAxis}deg) rotateX(${y}de          });
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
 
             document.addEventListener('mouseleave', () => {
                 const card = document.querySelector('.glass-card');
@@ -393,23 +402,23 @@
             const symbol = document.createElement('div');
             symbol.classList.add('floating-symbol');
             symbol.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            
+
             // Random positioning and sizing
             const left = Math.random() * 100;
             const size = Math.random() * 30 + 20; // 20px to 50px
             const duration = Math.random() * 10 + 15; // 15s to 25s
             const delay = Math.random() * 5;
 
-            symbol.style.left = `${ left }% `;
-            symbol.style.fontSize = `${ size } px`;
-            symbol.style.animationDuration = `${ duration } s`;
-            symbol.style.animationDelay = `- ${ delay } s`; // Start immediately with offset
-            
+            symbol.style.left = `${left}%`;
+            symbol.style.fontSize = `${size}px`;
+            symbol.style.animationDuration = `${duration}s`;
+            symbol.style.animationDelay = `-${delay}s`; // Start immediately with offset
+
             // Random color variation (cyan or purple tint)
             const isCyan = Math.random() > 0.5;
-            symbol.style.color = isCyan 
-                ? `rgba(0, 243, 255, ${ Math.random() * 0.1 + 0.05 })`
-                : `rgba(188, 19, 254, ${ Math.random() * 0.1 + 0.05 })`;
+            symbol.style.color = isCyan
+                ? `rgba(0, 243, 255, ${Math.random() * 0.1 + 0.05})`
+                : `rgba(188, 19, 254, ${Math.random() * 0.1 + 0.05})`;
 
             container.appendChild(symbol);
 
@@ -420,7 +429,7 @@
         }
 
         // Create initial batch
-        for(let i = 0; i < 15; i++) {
+        for (let i = 0; i < 15; i++) {
             createSymbol();
         }
 
